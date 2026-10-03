@@ -1,51 +1,163 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import gsap from 'gsap';
+	import Navbar from './Navbar.svelte';
+	import TextReveal from './TextReveal.svelte';
 
 	let root: HTMLDivElement;
+	let engineered: ReturnType<typeof TextReveal>;
+	let envelope: ReturnType<typeof TextReveal>;
+	let solutions: ReturnType<typeof TextReveal>;
 
 	onMount(() => {
+		let cancelled = false;
+
 		const ctx = gsap.context(() => {
-
-
-
-
+			gsap.set('.first-circle, .second-circle', { y: -500, opacity: 0 });
+			gsap.set('.navbar', { scaleX: 0 });
+			gsap.set('.navbar-logo, .navbar-item-text, .navbar-icon', {
+				yPercent: 120,
+				opacity: 0
+			});
+			gsap.set('.quote', { y: window.innerHeight });
 		}, root);
 
-		return () => ctx.revert();
+		document.fonts.ready.then(() => {
+			if (cancelled) return;
+
+			ctx.add(() => {
+				const titles = [engineered, envelope, solutions];
+				titles.forEach((t) => t.prepare());
+
+				const master = gsap.timeline({ delay: 0.3 });
+
+				master.addLabel('build', '+=0.4');
+
+				master.to('.navbar', { scaleX: 1, duration: 2.2, ease: 'power4.inOut' }, 'build');
+
+				titles.forEach((t) => master.add(t.reveal(2.2), 'build'));
+
+				master.to(
+					'.navbar-item-text',
+					{
+						yPercent: 0,
+						opacity: 1,
+						duration: 1,
+						ease: 'power4.out',
+						stagger: { each: 0.12, from: 'center' }
+					},
+					'build+=1.6'
+				);
+
+				master.to(
+					'.navbar-logo, .navbar-icon',
+					{
+						yPercent: 0,
+						opacity: 1,
+						duration: 1,
+						ease: 'power4.out',
+						stagger: 0.08
+					},
+					'build+=1.8'
+				);
+
+				master.addLabel('swap', '+=0.2');
+				titles.forEach((t) => master.add(t.swap(1.2), 'swap'));
+
+				master.addLabel('finale', '+=0.1');
+
+				master.to('.first-circle', { y: 80, opacity: 1, duration: 2, ease: 'power2.inOut' }, 'finale');
+				master.to('.second-circle', { y: 150, opacity: 1, duration: 2, ease: 'power2.inOut' }, 'finale');
+				master.to('.third-circle', { y: 280, duration: 2, ease: 'power2.inOut' }, 'finale');
+
+				master.add(envelope.stretch(1.4), 'finale+=0.6');
+				master.add(solutions.stretch(1.4), 'finale+=0.6');
+
+				master.to('.quote', { y: 0, duration: 1.6, ease: 'power3.out' }, 'finale+=0.3');
+			});
+		});
+
+		return () => {
+			cancelled = true;
+			ctx.revert();
+		};
 	});
 </script>
 
-<div bind:this={root} class="h-screen w-screen bg-black p-4 md:p-6 font-singo-sans">
-	<div class="relative h-full w-full">
-
-    	<div
-    		class="first-circle pointer-events-none absolute left-1/3 -top-32 z-[60] h-64 w-64 overflow-hidden rounded-full bg-fuchsia-400 will-change-transform"
-    	>
-    		<img
-    			src="/low-angle-roof.jpg"
-    			alt="Low angle roof"
-    			class="hero-image h-full w-full object-cover [clip-path:inset(25%_25%_25%_25%)] scale-200"
-    		/>
-	    </div>
+<div
+	bind:this={root}
+	class="h-screen w-screen overflow-hidden bg-black p-4 font-singo-sans md:p-6"
+>
+	<div class="relative flex h-full w-full justify-center">
+		<Navbar />
 
 		<div
-				class="second-circle pointer-events-none absolute left-1/2 top-[40%] z-[60] h-64 w-64 overflow-hidden rounded-full bg-blue-300 will-change-transform"
-			>
+			class="first-circle pointer-events-none absolute left-[30%] -top-40 z-60 h-72 w-72 overflow-hidden rounded-full will-change-transform"
+		>
 			<img
-    			src="/louvers-shading.jpg"
-    			alt="Louvers for shading"
-    			class="hero-image h-full w-full object-cover [clip-path:inset(25%_25%_25%_25%)] scale-200"
-    		/>
-
+				src="/low-angle-roof.jpg"
+				alt="Low angle roof"
+				class="hero-image h-full w-full scale-200 object-cover [clip-path:inset(25%_25%_25%_25%)]"
+			/>
 		</div>
 
-		<div class="third-circle final-dot pointer-events-none absolute left-1/2 top-1/2 z-[60] h-64 w-64 -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-full bg-slate-500 will-change-transform">
-        <img
-            src="/modern-glass-building.jpg"
-            alt="Hero background"
-            class="hero-image h-full w-full object-cover [clip-path:inset(25%_25%_25%_25%)] scale-200"
-            />
+		<div
+			class="second-circle pointer-events-none absolute left-[55%] top-[5%] z-60 h-72 w-72 overflow-hidden rounded-full will-change-transform"
+		>
+			<img
+				src="/shading2.jpg"
+				alt="Shading on building exteriors"
+				class="hero-image h-full w-full scale-200 object-cover [clip-path:inset(25%_25%_25%_25%)]"
+			/>
+		</div>
+
+		<div
+			class="third-circle final-dot pointer-events-none absolute left-1/2 top-1/2 z-60 h-72 w-72 -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-full bg-slate-500 will-change-transform"
+		>
+			<img
+				src="/modern-glass-building.jpg"
+				alt="Modern glass building exterior"
+				class="hero-image h-full w-full scale-200 object-cover [clip-path:inset(25%_25%_25%_25%)]"
+			/>
+		</div>
+
+		<div
+			class="hero-title absolute left-1/2 top-[48%] z-[70] flex w-[95%] -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center gap-4 text-white"
+		>
+			<TextReveal
+				bind:this={engineered}
+				text="Engineered"
+				textClass="tracking-[0.055em] text-[24rem]"
+				heightClass="h-76"
+			/>
+			<div class="flex w-full justify-between">
+				<TextReveal
+					bind:this={envelope}
+					text="Envelope"
+					textClass="tracking-normal text-[13rem]"
+					heightClass="h-40"
+					postReveal="stretch-o"
+				/>
+				<TextReveal
+					bind:this={solutions}
+					text="Solutions"
+					textClass="tracking-normal text-[13rem]"
+					heightClass="h-40"
+					postReveal="stretch-o"
+				/>
+			</div>
+		</div>
+
+		<div
+			class="quote absolute bottom-0 left-[10%] w-52 text-right font-sans text-md leading-none text-white"
+		>
+			“ARQO creates highly efficient, sustainable and refined systems for the architecture of tomorrow.”
+		</div>
+
+		<div
+			class="quote absolute bottom-0 right-[18%] w-52 text-right font-sans text-md leading-none text-white"
+		>
+			“We believe in high performance, precision, safety and tailor-made systems for every architectural environment.”
 		</div>
 	</div>
 </div>
