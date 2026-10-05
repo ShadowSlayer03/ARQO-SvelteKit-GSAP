@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
+	import { flushSync, onMount } from 'svelte';
 	import gsap from 'gsap';
 
 	type PostRevealEffect = 'stretch-o' | 'none';
@@ -9,16 +9,16 @@
 		textClass = '',
 		heightClass = '',
 		postReveal = 'none' as PostRevealEffect,
-		oTop = 0.06,
-		oHeight = 0.4,
+		oTop = 0.15,
+		oHeight = 0.87,
 		oStroke = 0.11,
-		oExtra = 1.1
+		oExtra = 0.6
 	} = $props();
 
 	let root: HTMLDivElement;
+
 	const textArr = text.split('');
 
-	// scoped selector: only finds elements inside THIS component
 	let q: ReturnType<typeof gsap.utils.selector>;
 	let ctx: gsap.Context;
 	let pills: { pill: HTMLElement; col: HTMLElement; endHeight: number }[] = [];
@@ -26,7 +26,6 @@
 	onMount(() => {
 		q = gsap.utils.selector(root);
 
-		// initial hidden positions (runs before the parent's onMount)
 		ctx = gsap.context(() => {
 			gsap.set(q('.move-up-one, .move-up-two'), { y: '100%' });
 			gsap.set(q('.move-down-one, .move-down-two'), { y: '-200%' });
@@ -39,8 +38,8 @@
 		};
 	});
 
-	/** Measure the O's and create invisible pills. Call once fonts are loaded. */
 	export function prepare() {
+		flushSync();
 		if (postReveal !== 'stretch-o') return;
 
 		const rootRect = root.getBoundingClientRect();
@@ -61,36 +60,33 @@
 				borderRadius: '9999px',
 				boxSizing: 'border-box',
 				pointerEvents: 'none',
-				opacity: '0'
+				opacity: '0',
+				padding: '10px'
 			});
 			root.appendChild(pill);
 			pills.push({ pill, col, endHeight: baseH + oExtra * fs });
 		});
 	}
 
-	/** Phase 1: letters slide into the window */
 	export function reveal(duration = 2) {
 		const tl = gsap.timeline({ defaults: { duration, ease: 'power4.inOut' } });
-		tl.to(q('.move-up-one, .move-up-two'), { y: 0 }, 0).to(
-			q('.move-down-one, .move-down-two'),
-			{ y: '-100%' },
-			0
-		);
+		tl
+		.to(q('.move-up-one, .move-up-two'), { y: 0 }, 0 )
+		.to(q('.move-down-one, .move-down-two'), { y: '-100%' }, 0 );
+
 		return tl;
 	}
 
-	/** Phase 2: letters swap places (completes the shuffle) */
 	export function swap(duration = 1.2) {
 		const tl = gsap.timeline({ defaults: { duration, ease: 'power4.inOut' } });
-		tl.to(q('.move-up-one, .move-up-two'), { y: '-100%' }, 0).to(
-			q('.move-down-one, .move-down-two'),
-			{ y: 0 },
-			0
-		);
+
+		tl
+		.to(q('.move-up-one, .move-up-two'), { y: '-100%' }, 0 )
+		.to(q('.move-down-one, .move-down-two'), { y: 0 }, 0 );
+
 		return tl;
 	}
 
-	/** Phase 3: swap the real O for the pill and stretch it downward */
 	export function stretch(duration = 1.4) {
 		const tl = gsap.timeline();
 		pills.forEach(({ pill, col, endHeight }) => {
@@ -103,23 +99,20 @@
 </script>
 
 <div bind:this={root} class="logo-container relative text-white">
-	<div class={`${heightClass} flex items-start overflow-hidden`}>
+	<div class={`${heightClass} flex overflow-hidden`}>
 		{#each textArr as letter, i (letter + i)}
 			<div
-				class={`flex flex-col leading-[0.8] ${
+				class={`flex flex-col ${textClass} ${
 					postReveal === 'stretch-o' && letter.toLowerCase() === 'o' ? 'o-col' : ''
 				}`}
 			>
-				<span
-					class={`${i % 2 === 0 ? 'move-up-one' : 'move-down-one'} ${textClass} block uppercase`}
-				>
-					{letter}
-				</span>
-				<span
-					class={`${i % 2 === 0 ? 'move-up-two' : 'move-down-two'} ${textClass} block uppercase`}
-				>
-					{letter}
-				</span>
+    			<span class={`${i % 2 === 0 ? 'move-up-one' : 'move-down-one'} block uppercase`}>
+    				{letter === ' ' ? '\u00A0' : letter}
+    			</span>
+
+    			<span class={`${i % 2 === 0 ? 'move-up-two' : 'move-down-two'} block uppercase`}>
+    				{letter === ' ' ? '\u00A0' : letter}
+    			</span>
 			</div>
 		{/each}
 	</div>
