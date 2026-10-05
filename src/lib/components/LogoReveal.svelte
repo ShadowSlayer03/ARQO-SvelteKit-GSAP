@@ -2,9 +2,7 @@
 	import { onMount } from 'svelte';
 	import gsap from 'gsap';
 
-	let {
-	animationState = $bindable()
-	} = $props();
+	let { animationState = $bindable() } = $props();
 
 	onMount(() => {
 		const tl = gsap.timeline({
@@ -17,11 +15,10 @@
 		gsap.set('.move-up-one, .move-up-two', { y: '100%' });
 		gsap.set('.move-down-one, .move-down-two', { y: '-200%' });
 
-		tl
-		    .to('.move-up-one', { y: 0 }, 0)
-		    .to('.move-up-two', { y: 0 }, 0)
-		    .to('.move-down-one', { y: '-100%' }, 0)
-		    .to('.move-down-two', { y: '-100%' }, 0)
+		tl.to('.move-up-one', { y: 0 }, 0)
+			.to('.move-up-two', { y: 0 }, 0)
+			.to('.move-down-one', { y: '-100%' }, 0)
+			.to('.move-down-two', { y: '-100%' }, 0);
 
 		gsap.delayedCall(1.5, () => {
 			const tl2 = gsap.timeline({
@@ -29,24 +26,23 @@
 					duration: 1.2,
 					ease: 'power4.inOut'
 				},
-				onComplete: ()=>{
-				    animationState = "loaded";
+				onComplete: () => {
+					animationState = 'loaded';
 				}
 			});
 
 			tl2
-			.to('.move-up-one', { y: '-100%' }, 0)
-            .to('.move-up-two', { y: '-100%' }, 0)
-            .to('.move-down-one', { y: 0 }, 0)
-		    .to('.move-down-two', { y: 0 }, 0)
-
+				.to('.move-up-one', { y: '-100%' }, 0)
+				.to('.move-up-two', { y: '-100%' }, 0)
+				.to('.move-down-one', { y: 0 }, 0)
+				.to('.move-down-two', { y: 0 }, 0);
 		});
 	});
 </script>
 
 <div class="relative flex h-screen w-screen bg-black font-singo-sans">
 	<div
-		class="logo-container absolute left-1/2 top-[47%] -translate-x-1/2 -translate-y-1/2 text-white"
+		class="logo-container absolute top-[47%] left-1/2 -translate-x-1/2 -translate-y-1/2 text-white"
 	>
 		<div class="top-logo-part flex h-32 overflow-hidden">
 			<div class="a-div flex flex-col">
@@ -54,7 +50,7 @@
 				<span class="move-up-two text-[8.5rem] leading-none">A</span>
 			</div>
 
-			<div class="r-div flex flex-col leading-none ">
+			<div class="r-div flex flex-col leading-none">
 				<span class="move-down-one text-[8.5rem]">R</span>
 				<span class="move-down-two text-[8.5rem]">R</span>
 			</div>
