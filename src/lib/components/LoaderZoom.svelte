@@ -6,9 +6,6 @@
 
 	let root: HTMLDivElement;
 
-	const words = ['Architecture.', 'Research.', 'Quality.', 'Originality.'];
-	const DOT_WORD_INDEX = 3;
-
 	onMount(() => {
 		const ctx = gsap.context(() => {
 			// ------------------------------------------------------------
@@ -208,14 +205,14 @@
 			);
 
 			tl.to(
-			'.final-dot-img',
-			{
-			    clipPath: "inset(0% 0% 0% 0%)",
-				scale: 1,
-				duration: 3,
-				ease: 'power2.out'
-			},
-			8
+				'.final-dot-img',
+				{
+					clipPath: 'inset(0% 0% 0% 0%)',
+					scale: 1,
+					duration: 3,
+					ease: 'power2.out'
+				},
+				8
 			);
 		}, root);
 
@@ -229,7 +226,7 @@
 >
 	<!-- STAGE 1: LOGO -->
 	<div
-		class="loader-logo absolute left-1/2 top-[47%] z-10 -translate-x-1/2 -translate-y-1/2 text-white will-change-transform preserv"
+		class="loader-logo preserv absolute top-[47%] left-1/2 z-10 -translate-x-1/2 -translate-y-1/2 text-white will-change-transform"
 	>
 		<!-- AR -->
 		<div class="top-logo-part flex h-32 overflow-hidden">
@@ -255,16 +252,16 @@
 	</div>
 
 	<div
-		class="white-circle absolute left-1/2 top-1/2 z-20 h-[2rem] w-[2rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-white"
+		class="white-circle absolute top-1/2 left-1/2 z-20 h-[2rem] w-[2rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-white"
 	></div>
 
 	<div
-		class="black-circle absolute left-1/2 top-1/2 z-30 h-[2rem] w-[2rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-black"
+		class="black-circle absolute top-1/2 left-1/2 z-30 h-[2rem] w-[2rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-black"
 	></div>
 
 	<!-- STAGE 4: TAGLINE (white on black) -->
 	<div
-		class="tagline pointer-events-none absolute left-1/2 top-1/2 z-40 flex -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center gap-y-4 text-center text-white will-change-transform"
+		class="tagline pointer-events-none absolute top-1/2 left-1/2 z-40 flex -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center gap-y-4 text-center text-white will-change-transform"
 		style="opacity: 0;"
 	>
 		<!-- ROW 1: Architecture. & Research. -->
@@ -320,17 +317,17 @@
 
 	<!-- STAGE 6: BLACK DOT -->
 	<div
-		class="black-dot pointer-events-none absolute left-1/2 top-1/2 z-50 h-8 w-8 -translate-x-1/2 -translate-y-1/2 rounded-full bg-black will-change-transform opacity-0"
+		class="black-dot pointer-events-none absolute top-1/2 left-1/2 z-50 h-8 w-8 -translate-x-1/2 -translate-y-1/2 rounded-full bg-black opacity-0 will-change-transform"
 	></div>
 
 	<!-- COLORED DOT INSIDE -->
 	<div
-		class="final-dot pointer-events-none absolute left-1/2 top-1/2 z-[60] h-72 w-72 -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-full will-change-transform opacity-0"
+		class="final-dot pointer-events-none absolute top-1/2 left-1/2 z-[60] h-72 w-72 -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-full opacity-0 will-change-transform"
 	>
-	        <img
-                src="/modern-glass-building.jpg"
-                alt="Hero background"
-                class="hero-image h-full w-full object-cover [clip-path:inset(25%_25%_25%_25%)] scale-200"
-            />
+		<img
+			src="/modern-glass-building.jpg"
+			alt="Hero background"
+			class="hero-image h-full w-full scale-200 object-cover [clip-path:inset(25%_25%_25%_25%)]"
+		/>
 	</div>
 </div>
