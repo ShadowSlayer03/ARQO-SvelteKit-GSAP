@@ -1,13 +1,20 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @font-face {
-  font-family: 'SingoSans';
-  src: url('/fonts/Singo_Regular.otf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
+	font-family: 'SingoSans';
+	src: url('/fonts/Singo_Regular.otf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
 }
 
 @theme {
-  --font-singo-sans: 'SingoSans', sans-serif;
+	--font-singo-sans: 'SingoSans', sans-serif;
+	--font-antonio: 'Antonio', sans-serif;
+}
+
+html,
+body {
+	cursor: none;
+	overflow-x: hidden;
 }
