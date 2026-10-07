@@ -11,7 +11,7 @@ export type Doc = {
 	title: string;
 	details: string;
 	size: string;
-	files: Record<string, string>; // language -> file path (put the PDFs in /static/downloads/<lang>/)
+	files: Record<string, string>;
 };
 
 const doc = (slug: string, title: string, details: string, size = '3.2 MB'): Doc => ({
@@ -32,7 +32,7 @@ export const downloadTabs: {
 		id: 'case-studies',
 		title: 'Case Studies',
 		description:
-			'Real projects, told from brief to handover. Each case study shows the challenge, the system we engineered and the measured results, from energy performance to installation time.',
+			'Explore a selection of projects delivered across different architectural, climatic and operational environments. Each case study follows the project from the initial brief through system development, engineering, fabrication, installation and final handover. Discover how ARQO systems respond to demanding design requirements while balancing thermal performance, durability, construction efficiency and architectural expression, with project-specific insights, technical decisions and measurable outcomes documented throughout the process.',
 		docs: {
 			'facade-systems': [
 				doc('waterfront-tower', 'Copenhagen Waterfront Tower', 'A ventilated aluminium facade that cut cooling loads on a 22-storey office tower.', '5.1 MB'),
@@ -53,7 +53,7 @@ export const downloadTabs: {
 		id: 'brochures',
 		title: 'Brochures',
 		description:
-			'Our product brochures offer detailed presentations, applications and technical specifications. Ideal for architects and builders, they give insight into product versatility and installation requirements, with clear and transparent documentation.',
+			'Review the ARQO product and system portfolio through detailed brochures created for architects, engineers, contractors and other project stakeholders. Each publication provides an accessible introduction to system configurations, applications, materials, finishes, performance characteristics and typical installation approaches. Together, these documents provide a broader understanding of how ARQO solutions can be specified, combined and adapted to meet different architectural requirements, from individual facade elements to complete building-envelope strategies.',
 		docs: {
 			'facade-systems': [
 				doc('facade-overview', 'ARQO Facade Systems Overview', 'The complete range of ventilated, rainscreen and insulated facade systems.', '6.3 MB'),
@@ -75,7 +75,7 @@ export const downloadTabs: {
 		id: 'specifications',
 		title: 'Specifications',
 		description:
-			'Technical data for engineers and specifiers: performance tables, structural values, fire classifications and installation guidance, kept in one place and updated with every product revision.',
+			'Access the technical documentation required to evaluate, specify and integrate ARQO systems into detailed building designs. These resources bring together performance data, dimensions, structural values, thermal characteristics, fire classifications, material properties, tolerances, connection details and installation requirements. Developed for engineers, architects, specifiers and construction teams, the documentation provides the technical information needed to make informed decisions throughout design development, coordination, procurement and on-site installation.',
 		docs: {
 			'facade-systems': [
 				doc('panel-data-sheet', 'Panel Technical Data Sheet', 'Dimensions, tolerances, weights and material properties.', '1.9 MB'),
