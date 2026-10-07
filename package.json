@@ -37,6 +37,7 @@
 	},
 	"dependencies": {
 		"@boxicons/svelte": "^1.0.1",
-		"gsap": "^3.15.0"
+		"gsap": "^3.15.0",
+		"swiper": "9.4.1"
 	}
 }
