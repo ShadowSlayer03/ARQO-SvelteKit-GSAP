@@ -1,8 +1,10 @@
 import { getContext, setContext } from 'svelte';
 
-type SiteContext = {
+export type SiteContext = {
 	navbarReveal: () => gsap.core.Timeline;
 	claimNavbar: () => void;
+	showMousePointer: boolean;
+	setShowMousePointer: (show: boolean) => void;
 };
 
 const KEY = Symbol('site');
