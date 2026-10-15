@@ -22,6 +22,16 @@
 		return () => ctx.revert();
 	});
 
+	export function showImmediately() {
+		gsap.killTweensOf(root);
+		gsap.killTweensOf(q('.navbar-logo, .navbar-item-text, .navbar-icon'));
+		gsap.set(root, { scaleX: 1, autoAlpha: 1 });
+		gsap.set(q('.navbar-logo, .navbar-item-text, .navbar-icon'), {
+			yPercent: 0,
+			opacity: 1
+		});
+	}
+
 	export function reveal(duration = 2.2) {
 		const tl = gsap.timeline();
 
@@ -55,7 +65,7 @@
 	}
 </script>
 
-<div class="pointer-events-none fixed inset-x-0 top-4 z-[9998] flex justify-center md:top-6">
+<div class="pointer-events-none fixed inset-x-0 top-4 z-9998 flex justify-center md:top-6">
 	<nav
 		bind:this={root}
 		class="navbar pointer-events-auto invisible flex h-13 w-[95%] origin-center items-center justify-between rounded-lg bg-white p-3 font-antonio"
