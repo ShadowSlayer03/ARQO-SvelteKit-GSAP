@@ -6,6 +6,7 @@
 	import TextReveal from '$lib/components/TextReveal.svelte';
 
 	let root: HTMLElement;
+	let heroImage: HTMLImageElement;
 	let heading: ReturnType<typeof TextReveal>;
 
 	onMount(() => {
@@ -13,7 +14,22 @@
 
 		const ctx = gsap.context(() => {
 			gsap.set('.products-hero-fade', { opacity: 0, y: 20 });
+			gsap.set(heroImage, { autoAlpha: 0 });
 		}, root);
+
+		const revealHeroImage = () => {
+			if (cancelled) return;
+
+			ctx.add(() => {
+				gsap.to(heroImage, { autoAlpha: 1, duration: 1.4, ease: 'power2.out' });
+			});
+		};
+
+		if (heroImage.complete) {
+			revealHeroImage();
+		} else {
+			heroImage.addEventListener('load', revealHeroImage, { once: true });
+		}
 
 		document.fonts.ready.then(() => {
 			if (cancelled) return;
@@ -35,6 +51,7 @@
 
 		return () => {
 			cancelled = true;
+			heroImage.removeEventListener('load', revealHeroImage);
 			ctx.revert();
 		};
 	});
@@ -60,6 +77,7 @@
 >
 	<div class="absolute inset-x-0 top-0 h-[68svh] max-h-[52rem] min-h-[30rem] overflow-hidden">
 		<img
+			bind:this={heroImage}
 			src="/modern-glass-building.jpg"
 			alt="Modern glass building facade beneath a clear blue sky"
 			fetchpriority="high"
