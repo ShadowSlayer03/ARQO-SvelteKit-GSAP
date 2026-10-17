@@ -12,11 +12,12 @@
 
 	onMount(() => {
 		const ctx = gsap.context(() => {
+			gsap.set('.topics-heading', { autoAlpha: 0, x: -32 });
 			gsap.set('.topic-item', {
 				y: (i) => (i % 2 === 0 ? 300 : -300),
 				opacity: 0,
 				duration: 2,
-				ease: 'power2.in',
+				ease: 'power2.in'
 			});
 
 			gsap.to('.topic-item', {
@@ -25,6 +26,14 @@
 				duration: 1.2,
 				ease: 'power4.out',
 				stagger: 0.3,
+				scrollTrigger: { trigger: cards, start: 'top 75%', once: true }
+			});
+
+			gsap.to('.topics-heading', {
+				autoAlpha: 1,
+				x: 0,
+				duration: 0.8,
+				ease: 'power3.out',
 				scrollTrigger: { trigger: cards, start: 'top 75%', once: true }
 			});
 		}, root);
@@ -37,7 +46,7 @@
 	bind:this={root}
 	class="min-h-[90vh] w-screen bg-black px-5 pt-10 font-antonio text-white md:px-10 md:pt-30"
 >
-	<h5 class="uppercase">Highlighted Topics</h5>
+	<h5 class="topics-heading uppercase">Highlighted Topics</h5>
 
 	<div bind:this={cards} class="topic-cards mt-15 flex flex-wrap gap-12">
 		{#each topicItems as item, id (id)}
