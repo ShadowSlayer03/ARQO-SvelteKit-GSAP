@@ -11,7 +11,7 @@
 		postReveal = 'none' as PostRevealEffect,
 		oTop = 0.15,
 		oHeight = 0.87,
-		oStroke = 0.11,
+		oStroke = 0.13,
 		oExtra = 0.6
 	} = $props();
 
@@ -61,7 +61,7 @@
 				boxSizing: 'border-box',
 				pointerEvents: 'none',
 				opacity: '0',
-				padding: '10px'
+				margin: '4px'
 			});
 			root.appendChild(pill);
 			pills.push({ pill, col, endHeight: baseH + oExtra * fs });
