@@ -14,6 +14,8 @@
 
 	onMount(() => {
 		const ctx = gsap.context(() => {
+			gsap.set('.references-heading', { autoAlpha: 0, x: -32 });
+			gsap.set('.references-view-all', { autoAlpha: 0, x: 32 });
 			gsap.set('.ref-card', { clipPath: 'inset(100% 0% 0% 0%)' });
 			gsap.set('.ref-img', { scale: 1.4 });
 			gsap.set('.ref-overlay', { opacity: IDLE_DIM });
@@ -22,19 +24,39 @@
 			gsap.set('.ref-desc-text', { yPercent: 100 });
 
 			const tl = gsap.timeline({
-				scrollTrigger: { trigger: grid, start: 'top 80%', once: true }
+				scrollTrigger: { trigger: grid, start: 'top 40%', once: true }
 			});
 
 			tl.to(
-				'.ref-card',
+				'.references-heading',
 				{
-					clipPath: 'inset(0% 0% 0% 0%)',
-					duration: 1.4,
-					ease: 'power4.inOut',
-					stagger: 0.15
+					autoAlpha: 1,
+					x: 0,
+					duration: 0.8,
+					ease: 'power3.out'
 				},
 				0
 			)
+				.to(
+					'.references-view-all',
+					{
+						autoAlpha: 1,
+						x: 0,
+						duration: 0.8,
+						ease: 'power3.out'
+					},
+					0.12
+				)
+				.to(
+					'.ref-card',
+					{
+						clipPath: 'inset(0% 0% 0% 0%)',
+						duration: 1.4,
+						ease: 'power4.inOut',
+						stagger: 0.15
+					},
+					0
+				)
 				.to('.ref-img', { scale: 1, duration: 3, ease: 'power3.out', stagger: 0.15 }, 0)
 				.to('.ref-meta', { opacity: 1, y: 0, duration: 2, ease: 'power3.out', stagger: 0.15 }, 0.8);
 		}, root);
@@ -91,8 +113,8 @@
 	class="min-h-screen w-screen bg-black px-5 pt-10 font-antonio text-white md:px-10 md:pt-30"
 >
 	<div class="flex justify-between">
-		<h5 class="text-[1rem] uppercase">Latest References</h5>
-		<span class="cursor-pointer text-[1rem] uppercase underline">View All</span>
+		<h5 class="references-heading text-[1rem] uppercase">Latest References</h5>
+		<span class="references-view-all cursor-pointer text-[1rem] uppercase underline">View All</span>
 	</div>
 
 	<!-- svelte-ignore a11y_no_static_element_interactions -->
