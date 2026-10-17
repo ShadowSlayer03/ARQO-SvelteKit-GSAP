@@ -10,8 +10,8 @@
 		seo.description ??
 			'ARQO specializes in premium building envelope systems — facades, cladding, glazing, and insulation for modern architecture.'
 	);
-	const ogImage = $derived(seo.ogImage ?? 'https://arqo.com/og-default.jpg');
-	const canonical = $derived(seo.canonical ?? 'https://arqo.com');
+	const ogImage = $derived(seo.ogImage ?? 'https://arqo.vercel.app/og-default.jpg');
+	const canonical = $derived(seo.canonical ?? 'https://arqo.vercel.app');
 
 	const structuredData = JSON.stringify({
 		'@context': 'https://schema.org',
@@ -30,6 +30,9 @@
 	<title>{title}</title>
 	<meta name="description" content={description} />
 	<link rel="canonical" href={canonical} />
+
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
 
 	<meta property="og:type" content="website" />
 	<meta property="og:title" content={title} />
