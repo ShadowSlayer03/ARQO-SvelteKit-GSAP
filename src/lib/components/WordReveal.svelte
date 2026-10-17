@@ -6,7 +6,7 @@
 	gsap.registerPlugin(ScrollTrigger);
 
 	let {
-		lines = [] as string[],
+		lines = $bindable([]),
 		textClass = '',
 		size,
 		triggerOnScroll = true,
