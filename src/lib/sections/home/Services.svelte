@@ -100,9 +100,9 @@
 
 <section
 	bind:this={root}
-	class="min-h-screen w-screen bg-black px-5 pt-10 font-antonio text-white md:px-10 md:pt-30"
+	class="min-h-fit w-screen bg-black px-5 pt-10 pb-8 font-antonio text-white md:min-h-screen md:px-10 md:pt-30 md:pb-0"
 >
-	<h5 class="svc-heading mb-10 text-lg uppercase">Solutions &amp; Services</h5>
+	<h5 class="svc-heading mb-6 text-lg uppercase md:mb-10">Solutions &amp; Services</h5>
 
 	{#each serviceItems as service, i (service.title)}
 		<div class="svc-row">
