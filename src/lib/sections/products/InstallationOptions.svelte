@@ -9,7 +9,6 @@
 	gsap.registerPlugin(ScrollTrigger);
 
 	let installationSection: HTMLElement;
-	let installationPanel: HTMLDivElement;
 	let installationFrame: HTMLElement;
 	let installationImageA: HTMLImageElement;
 	let installationImageB: HTMLImageElement;
@@ -235,10 +234,9 @@
 
 		const ctx = gsap.context(() => {
 			gsap.set('.installation-copy', { autoAlpha: 0, y: 24 });
-			gsap.set(installationPanel, { width: '94%', minHeight: '90svh', maxWidth: '72rem' });
 			gsap.set(installationFrame, { clipPath: 'inset(0% 0% 100% 0%)' });
-			gsap.set(installationImageA, { scale: 1.2, autoAlpha: 1 });
-			gsap.set(installationImageB, { scale: 1.2, autoAlpha: 0 });
+			gsap.set(installationImageA, { scale: 1.08, autoAlpha: 1 });
+			gsap.set(installationImageB, { scale: 1.08, autoAlpha: 0 });
 			gsap.set('.staggered-slice', { autoAlpha: 0 });
 			gsap.set(optionMenu, { autoAlpha: 0, clipPath: 'inset(0% 0% 100% 0%)' });
 		}, installationSection);
@@ -255,20 +253,9 @@
 						gsap
 							.timeline()
 							.to(
-								installationPanel,
-								{
-									width: '100%',
-									minHeight: '100svh',
-									maxWidth: '100%',
-									duration: 1.2,
-									ease: 'power3.inOut'
-								},
-								0
-							)
-							.to(
 								'.installation-copy',
 								{ autoAlpha: 1, y: 0, duration: 0.8, ease: 'power3.out', stagger: 0.12 },
-								0
+								0.12
 							)
 							.to(
 								installationFrame,
@@ -293,13 +280,10 @@
 <section
 	bind:this={installationSection}
 	id="installation-options"
-	class="min-h-screen bg-white"
+	class="min-h-screen bg-black"
 	aria-labelledby="installation-heading"
 >
-	<div
-		bind:this={installationPanel}
-		class="mx-auto flex min-h-[90svh] w-[94%] max-w-6xl items-center bg-black p-6 md:p-10"
-	>
+	<div class="flex min-h-screen w-full items-center bg-black p-6 md:p-10">
 		<div class="grid w-full gap-10 md:grid-cols-[0.9fr_1.1fr] md:items-center md:gap-14">
 			<div class="flex flex-col items-start">
 				<h2 id="installation-heading" class="mb-5">
