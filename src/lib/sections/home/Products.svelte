@@ -1,14 +1,20 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import gsap from 'gsap';
+	import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 	import productItems from '$lib/constants/productItems';
 	import TextMarquee from '$lib/components/TextMarquee.svelte';
+
+	gsap.registerPlugin(ScrollTrigger);
 
 	let root: HTMLDivElement;
 
 	onMount(() => {
 		const ctx = gsap.context(() => {
+			gsap.set('.products-heading', { autoAlpha: 0, y: 20 });
+			gsap.set('.product-row', { autoAlpha: 0 });
+
 			gsap.set('.marquee-layer', {
 				yPercent: 100
 			});
@@ -47,6 +53,27 @@
 				left: '10%',
 				top: '72%'
 			});
+
+			gsap
+				.timeline({
+					scrollTrigger: { trigger: root, start: 'top 75%', once: true }
+				})
+				.to('.products-heading', {
+					autoAlpha: 1,
+					y: 0,
+					duration: 0.7,
+					ease: 'power3.out'
+				})
+				.to(
+					'.product-row',
+					{
+						autoAlpha: 1,
+						duration: 0.75,
+						ease: 'power3.out',
+						stagger: 0.12
+					},
+					'-=0.3'
+				);
 		}, root);
 
 		return () => ctx.revert();
@@ -94,13 +121,13 @@
 	id="all-products"
 	class="relative flex min-h-screen w-screen flex-col items-center bg-black py-10"
 >
-	<h3 class="font-sans text-lg text-white uppercase">Discover Our Products</h3>
+	<h3 class="products-heading font-sans text-lg text-white uppercase">Discover Our Products</h3>
 
 	<div class="product-texts w-full pt-10">
 		{#each productItems as product, id (product + id.toString())}
 			<!-- svelte-ignore a11y_no_static_element_interactions -->
 			<div
-				class="flex w-full cursor-pointer justify-center pt-8"
+				class="product-row flex w-full cursor-pointer justify-center pt-8"
 				onmouseenter={(e) => play(e.currentTarget, true, id)}
 				onmouseleave={(e) => play(e.currentTarget, false, id)}
 			>
