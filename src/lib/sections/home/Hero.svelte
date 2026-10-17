@@ -137,14 +137,14 @@
 		</div>
 
 		<div
-			class="quote text-md absolute bottom-0 left-[12%] w-52 text-right font-sans leading-none text-white"
+			class="quote text-md absolute bottom-0 left-[10%] w-52 text-right font-sans leading-none text-white"
 		>
 			“ARQO creates highly efficient, sustainable and refined systems for the architecture of
 			tomorrow.”
 		</div>
 
 		<div
-			class="quote text-md absolute right-[21%] bottom-0 w-52 text-right font-sans leading-none text-white"
+			class="quote text-md absolute right-[20%] bottom-0 w-52 text-right font-sans leading-none text-white"
 		>
 			“We believe in high performance, precision, safety and tailor-made systems for every
 			architectural environment.”
