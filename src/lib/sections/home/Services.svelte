@@ -17,6 +17,7 @@
 		// hidden states first, so nothing flashes before the timeline exists
 		const ctx = gsap.context(() => {
 			gsap.set('.svc-num, .svc-heading', { opacity: 0 });
+			gsap.set('.svc-icon', { opacity: 0 });
 			gsap.set('.svc-desc', { height: 0 });
 			gsap.set('.svc-desc-text', { yPercent: 100 });
 		}, root);
@@ -28,9 +29,10 @@
 				const q = gsap.utils.selector(root);
 				const lines = q('.svc-line');
 				const nums = q('.svc-num');
+				const icons = q('.svc-icon');
 
 				const tl = gsap.timeline({
-					scrollTrigger: { trigger: root, start: 'top 70%', once: true }
+					scrollTrigger: { trigger: root, start: 'top 20%', once: true }
 				});
 
 				tl.to('.svc-heading', { opacity: 1, duration: 0.8, ease: 'power2.out' }, 0);
@@ -43,6 +45,7 @@
 						tl.add(titles[i].reveal(1.2), t + 0.35);
 						tl.add(titles[i].swap(1.0), t + 0.35 + 1.2 + 0.15);
 						tl.to(nums[i], { opacity: 1, duration: 0.8, ease: 'power2.out' }, t + 0.35);
+						tl.to(icons[i], { opacity: 1, duration: 0.8, ease: 'power2.out' }, t + 0.35);
 					}
 				});
 
@@ -103,7 +106,12 @@
 
 	{#each serviceItems as service, i (service.title)}
 		<div class="svc-row">
-			<svg class="block h-[2px] w-full" viewBox="0 0 100 2" preserveAspectRatio="none" aria-hidden="true">
+			<svg
+				class="block h-[2px] w-full"
+				viewBox="0 0 100 2"
+				preserveAspectRatio="none"
+				aria-hidden="true"
+			>
 				<line
 					class="svc-line"
 					x1="0"
@@ -136,7 +144,7 @@
 					/>
 				</div>
 
-				<span class="svc-icon pr-2 pt-2 font-sans text-4xl leading-none">+</span>
+				<span class="svc-icon pt-2 pr-2 font-sans text-4xl leading-none">+</span>
 			</button>
 
 			<div id={`svc-desc-${i}`} class="svc-desc overflow-hidden">
@@ -151,6 +159,15 @@
 	{/each}
 
 	<svg class="block h-0.5 w-full" viewBox="0 0 100 2" preserveAspectRatio="none" aria-hidden="true">
-		<line class="svc-line" x1="0" y1="1" x2="0" y2="1" stroke="white" stroke-width="2" vector-effect="non-scaling-stroke" />
+		<line
+			class="svc-line"
+			x1="0"
+			y1="1"
+			x2="0"
+			y2="1"
+			stroke="white"
+			stroke-width="2"
+			vector-effect="non-scaling-stroke"
+		/>
 	</svg>
 </section>
