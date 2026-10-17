@@ -3,10 +3,9 @@ const footerItems = [
 		{
 			title: 'Navigate',
 			links: [
-				{ label: 'Products', href: '/products' },
-				{ label: 'Solutions & Services', href: '/services' },
+        { label: 'Products', href: '/products' },
 				{ label: 'References', href: '/references' },
-				{ label: 'Company', href: '/company' }
+				{ label: 'Downloads', href: '/downloads' }
 			]
 		},
 		{
