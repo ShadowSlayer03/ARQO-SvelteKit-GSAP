@@ -126,7 +126,7 @@
 		{#each referenceItems as reference, id (id)}
 			<!-- svelte-ignore a11y_no_static_element_interactions -->
 			<article
-				class="ref-card relative h-[75vh] cursor-pointer overflow-hidden"
+				class="ref-card relative h-[50svh] max-h-[24rem] min-h-[16rem] cursor-pointer overflow-hidden md:h-[60svh] md:max-h-none md:min-h-0 lg:h-[75vh]"
 				onmouseenter={(e) => focusCard(e.currentTarget)}
 			>
 				<img
