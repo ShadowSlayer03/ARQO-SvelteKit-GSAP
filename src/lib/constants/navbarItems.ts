@@ -1,9 +1,5 @@
 const navbarItems = [
   {
-    label: 'Company',
-    href: '/company'
-  },
-  {
     label: 'Products',
     href: '/products'
   },
