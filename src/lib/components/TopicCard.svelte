@@ -17,8 +17,8 @@
 		});
 
 		gsap.to(text, {
-		    backgroundColor: "white",
-			color: "black",
+			backgroundColor: 'white',
+			color: 'black',
 			rotate: -10,
 			y: 40,
 			duration: 1,
@@ -27,8 +27,8 @@
 	}
 
 	function onMouseLeave() {
-     	const img = root.querySelector('.img-container');
-     	const text = root.querySelector('.text-container');
+		const img = root.querySelector('.img-container');
+		const text = root.querySelector('.text-container');
 
 		gsap.to(img, {
 			y: 0,
@@ -38,8 +38,8 @@
 		});
 
 		gsap.to(text, {
-    		backgroundColor: "black",
-    		color: "white",
+			backgroundColor: 'black',
+			color: 'white',
 			rotate: 0,
 			y: 0,
 			duration: 1,
@@ -51,7 +51,7 @@
 <!-- svelte-ignore a11y_no_static_element_interactions -->
 <div
 	bind:this={root}
-	class="relative h-100 w-80 shrink-0"
+	class="relative h-100 w-[calc(100vw-2.5rem)] max-w-80 shrink-0"
 	onmouseenter={onMouseEnter}
 	onmouseleave={onMouseLeave}
 >
@@ -59,7 +59,9 @@
 		<img class="h-full w-full object-cover" src={topic.image} alt={topic.alt} />
 	</div>
 
-	<div class="text-container absolute inset-0 z-10 flex flex-col justify-between rounded-lg border border-white bg-black p-5 text-white">
+	<div
+		class="text-container absolute inset-0 z-10 flex flex-col justify-between rounded-lg border border-white bg-black p-5 text-white"
+	>
 		<div class="header font-singo-sans">
 			<h3 class="text-left text-[2rem] leading-none tracking-wide">{topic.title}</h3>
 			<p class="text-left">{topic.date}</p>
