@@ -44,11 +44,14 @@
 
 <div
 	bind:this={root}
-	class="min-h-[90vh] w-screen bg-black px-5 pt-10 font-antonio text-white md:px-10 md:pt-30"
+	class="min-h-[90vh] w-screen bg-black px-5 pt-10 pb-24 font-antonio text-white md:px-10 md:pt-30 lg:pb-0"
 >
 	<h5 class="topics-heading uppercase">Highlighted Topics</h5>
 
-	<div bind:this={cards} class="topic-cards mt-15 flex flex-wrap gap-12">
+	<div
+		bind:this={cards}
+		class="topic-cards mt-15 flex flex-wrap justify-center gap-12 lg:justify-start"
+	>
 		{#each topicItems as item, id (id)}
 			<div class="topic-item">
 				<TopicCard topic={item} />
