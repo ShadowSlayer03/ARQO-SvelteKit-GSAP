@@ -10,16 +10,15 @@
 
 	onMount(() => {
 		const ctx = gsap.context(() => {
-			gsap.set('.info-copy', { opacity: 0, y: 40 });
-
-			gsap.to('.info-copy', {
-				opacity: 1,
-				y: 0,
-				duration: 1,
-				ease: 'power3.out',
-				stagger: 0.15,
-				scrollTrigger: { trigger: root, start: 'top 40%', once: true }
+			const tl = gsap.timeline({
+				scrollTrigger: { trigger: root, start: 'top 10%', once: true }
 			});
+
+			tl.fromTo(
+				'.info-text',
+				{ autoAlpha: 0, y: 60, delay: 1 },
+				{ autoAlpha: 1, y: 0, duration: 1, ease: 'power3.out' }
+			);
 		}, root);
 
 		return () => ctx.revert();
@@ -36,7 +35,7 @@
 		size="1.2em"
 	/>
 
-	<div class="mt-16 md:mt-24 md:pl-[51%]">
+	<div class="info-text mt-16 md:mt-24 md:pl-[51%]">
 		<p class="info-copy max-w-md font-sans text-sm leading-snug text-neutral-300">
 			ARQO is an architectural systems company specializing in high-performance building envelope
 			solutions. Our core business encompasses the design and manufacture of façade, glazing,
