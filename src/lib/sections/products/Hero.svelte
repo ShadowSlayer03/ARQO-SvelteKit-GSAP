@@ -103,15 +103,15 @@
 
 	<h1
 		id="products-heading"
-		class="absolute top-[45%] left-0 flex w-full -translate-y-1/2 justify-center px-2 text-center"
+		class="absolute top-[45%] left-0 flex w-full -translate-y-1/2 justify-center px-4 text-center"
 		aria-label="Products"
 	>
 		<span aria-hidden="true">
 			<TextReveal
 				bind:this={heading}
 				text="Products"
-				textClass="lowercase text-[20rem] leading-[1.04]"
-				heightClass="h-84"
+				textClass="lowercase text-[clamp(5.25rem,25vw,20rem)] leading-[1.04]"
+				heightClass="h-[clamp(5.5rem,26vw,20rem)]"
 			/>
 		</span>
 	</h1>
