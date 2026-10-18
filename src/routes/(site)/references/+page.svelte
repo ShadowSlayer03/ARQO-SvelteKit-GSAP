@@ -564,76 +564,78 @@
 
 
 <main bind:this={root} class="min-h-screen w-screen overflow-hidden bg-black px-5 pb-16 pt-32 font-antonio text-white md:px-10">
-     	<div class="flex items-start justify-between text-[clamp(4rem,11vw,10rem)] uppercase">
-    		<h1 aria-label="References">
-    			<div aria-hidden="true">
-    				<TextReveal bind:this={title} text="References" textClass="leading-[1.04] tracking-normal" heightClass="h-[1.04em]" />
-    			</div>
-    		</h1>
+	<div class="flex items-start justify-between gap-2 text-[clamp(4rem,11vw,10rem)] uppercase max-sm:text-[clamp(2.5rem,12vw,4rem)]">
+		<h1 aria-label="References">
+			<div aria-hidden="true">
+				<TextReveal bind:this={title} text="References" textClass="leading-[1.04] tracking-normal" heightClass="h-[1.04em]" />
+			</div>
+		</h1>
 
-    		<p aria-label={`${total} references`}>
-    			<span aria-hidden="true">
-    				<TextReveal bind:this={count} text={String(total)} textClass="leading-[1.04] tracking-normal" heightClass="h-[1.04em]" />
-    			</span>
-    		</p>
-    	</div>
+		<p aria-label={`${total} references`}>
+			<span aria-hidden="true">
+				<TextReveal bind:this={count} text={String(total)} textClass="leading-[1.04] tracking-normal" heightClass="h-[1.04em]" />
+			</span>
+		</p>
+	</div>
 
-    	<div class="rf-fade relative z-20 mt-10 flex items-center gap-4 md:mt-12">
-    		<div class="shrink-0 rounded-full border border-white/80 px-7 py-2 text-sm uppercase">
-    			Filter
-    		</div>
+	<div class="rf-fade relative z-20 mt-10 flex flex-wrap items-center gap-x-3 gap-y-4 md:mt-12 md:flex-nowrap md:gap-4">
+		<div class="order-1 shrink-0 rounded-full border border-white/80 px-5 py-2 text-xs uppercase sm:px-7 sm:text-sm">
+			Filter
+		</div>
 
-    		<span class="shrink-0 text-lg">{startYear}</span>
+		<button
+			type="button"
+			class="order-2 ml-auto shrink-0 cursor-pointer rounded-full bg-white px-4 py-2 text-xs uppercase text-black sm:px-6 sm:text-sm md:order-3 md:ml-0"
+			onclick={() => {
+				newestFirst = !newestFirst;
 
-    		<!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
-    		<div
-    			bind:this={track}
-    			class="relative h-10 flex-1 cursor-pointer touch-none"
-    			onpointerdown={startSliderDrag}
-    			onpointermove={dragSlider}
-    			onpointerup={endSliderDrag}
-    			onclick={clickSlider}
-    		>
-    			<div class="absolute inset-x-0 top-1/2 h-px -translate-y-1/2 bg-white/40"></div>
+				const newIndex = years.findIndex((item) => item.year === selectedYear);
 
-    			<div
-    				class="absolute left-0 top-1/2 h-px -translate-y-1/2 bg-white"
-    				style:width={`${sliderProgress * 100}%`}
-    			></div>
+				if (newIndex !== -1) {
+					sliderProgress = years.length > 1 ? newIndex / (years.length - 1) : 0;
+				}
+			}}
+		>
+			By Date {newestFirst ? '↓' : '↑'}
+		</button>
 
-    			<span
-    				class="absolute -top-7 -translate-x-1/2 text-sm"
-    				style:left={`${sliderProgress * 100}%`}
-    			>
-    				{sliderYear}
-    			</span>
+		<div class="order-3 flex w-full min-w-0 items-center gap-2 md:order-2 md:w-auto md:flex-1 md:gap-4">
+			<span class="shrink-0 text-sm md:text-lg">{startYear}</span>
 
-    			<div
-    				class="absolute top-1/2 -translate-x-1/2 -translate-y-1/2"
-    				style:left={`${sliderProgress * 100}%`}
-    			>
-    				<div class={`rounded-full bg-white transition-[width,height] duration-200 ${draggingSlider ? 'h-3.5 w-3.5' : 'h-2.5 w-2.5'}`}></div>
-    			</div>
-    		</div>
+			<!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
+			<div
+				bind:this={track}
+				class="relative h-10 min-w-0 flex-1 cursor-pointer touch-none"
+				onpointerdown={startSliderDrag}
+				onpointermove={dragSlider}
+				onpointerup={endSliderDrag}
+				onclick={clickSlider}
+			>
+				<div class="absolute inset-x-0 top-1/2 h-px -translate-y-1/2 bg-white/40"></div>
 
-    		<span class="shrink-0 text-lg">{endYear}</span>
+				<div
+					class="absolute left-0 top-1/2 h-px -translate-y-1/2 bg-white"
+					style:width={`${sliderProgress * 100}%`}
+				></div>
 
-    		<button
-    			type="button"
-    			class="shrink-0 cursor-pointer rounded-full bg-white px-6 py-2 text-sm uppercase text-black"
-    			onclick={() => {
-    				newestFirst = !newestFirst;
+				<span
+					class="absolute -top-7 -translate-x-1/2 text-sm"
+					style:left={`${sliderProgress * 100}%`}
+				>
+					{sliderYear}
+				</span>
 
-    				const newIndex = years.findIndex((item) => item.year === selectedYear);
+				<div
+					class="absolute top-1/2 -translate-x-1/2 -translate-y-1/2"
+					style:left={`${sliderProgress * 100}%`}
+				>
+					<div class={`rounded-full bg-white transition-[width,height] duration-200 ${draggingSlider ? 'h-3.5 w-3.5' : 'h-2.5 w-2.5'}`}></div>
+				</div>
+			</div>
 
-    				if (newIndex !== -1) {
-    					sliderProgress = years.length > 1 ? newIndex / (years.length - 1) : 0;
-    				}
-    			}}
-    		>
-    			By Date {newestFirst ? '↓' : '↑'}
-    		</button>
-    	</div>
+			<span class="shrink-0 text-sm md:text-lg">{endYear}</span>
+		</div>
+	</div>
 
     	<!-- svelte-ignore a11y_no_static_element_interactions -->
     	<div
@@ -669,7 +671,7 @@
 
     		<div
     			bind:this={cursor}
-    			class="pointer-events-none absolute left-0 top-0 z-20 -ml-14 -mt-14 flex h-28 w-28 items-center justify-center rounded-full border border-white/80 text-sm uppercase"
+				class="rf-cursor pointer-events-none absolute left-0 top-0 z-20 -ml-14 -mt-14 flex h-28 w-28 items-center justify-center rounded-full border border-white/80 text-sm uppercase"
     		>
     			Drag
     		</div>
@@ -820,6 +822,42 @@
 
 	@media (prefers-reduced-motion: reduce) {
 		.project-marquee-track { animation: none; }
+	}
+
+	@media (max-width: 767px) {
+		.rf-gallery swiper-container {
+			height: 280px;
+		}
+
+		.rf-gallery swiper-slide {
+			width: min(72vw, 16rem);
+			height: 260px;
+		}
+
+		.rf-gallery swiper-slide[data-position='top'] {
+			padding-top: 0;
+		}
+
+		.rf-gallery swiper-slide[data-position='bottom'] {
+			padding-top: 2.5rem;
+		}
+
+		.rf-gallery swiper-slide[data-gap='normal'] {
+			margin-right: 1rem;
+		}
+
+		.rf-gallery swiper-slide[data-gap='large'] {
+			margin-right: 2.25rem;
+		}
+
+		.ref-card {
+			width: 100%;
+			height: 13rem;
+		}
+
+		.rf-cursor {
+			display: none;
+		}
 	}
 
 </style>
