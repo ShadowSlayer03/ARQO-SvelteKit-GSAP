@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { page } from '$app/state';
+	import { page } from '$app/state';
 	import { onMount, tick } from 'svelte';
 	import { afterNavigate } from '$app/navigation';
 	import gsap from 'gsap';
@@ -15,9 +15,12 @@
 
 	gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
-	let { children } = $props();
+	let { data, children } = $props();
 
-	let animationState: 'init' | 'loaded' | 'completed' = $state('init');
+	// svelte-ignore state_referenced_locally — intentionally capture SSR-provided introSeen once
+	let animationState: 'init' | 'loaded' | 'completed' = $state(
+		data.introSeen ? 'completed' : 'init'
+	);
 	let navbar = $state<ReturnType<typeof Navbar>>();
 	let smoother: ScrollSmoother | null = null;
 
@@ -30,20 +33,25 @@
 	const pathsWithoutFooter = ['/contact'];
 
 	setSite({
-			navbarReveal: () => {
-				if (navbarPlayed) return gsap.timeline();
+		navbarReveal: () => {
+			if (navbarPlayed) return gsap.timeline();
 
-				navbarPlayed = true;
-				return navbar!.reveal(2.2);
-			},
-			claimNavbar: () => {
-				navbarClaimed = true;
-			},
-			showMousePointer,
-			setShowMousePointer: (show) => {
-				showMousePointer = show;
-			}
-		});
+			navbarPlayed = true;
+			return navbar!.reveal(2.2);
+		},
+		claimNavbar: () => {
+			navbarClaimed = true;
+		},
+		showMousePointer,
+		setShowMousePointer: (show) => {
+			showMousePointer = show;
+		}
+	});
+
+	$effect(() => {
+		if (animationState !== 'completed' || data.introSeen) return;
+		document.cookie = 'arqo-intro=1; path=/; max-age=31536000; SameSite=Lax';
+	});
 
 	$effect(() => {
 		if (animationState !== 'completed' || !navbar || navbarClaimed || navbarPlayed) return;
@@ -104,8 +112,8 @@
 {:else if animationState === 'loaded'}
 	<LoaderZoom bind:animationState />
 {:else}
-    {#if showMousePointer}
-        <MousePointer />
+	{#if showMousePointer}
+		<MousePointer />
 	{/if}
 
 	<Navbar bind:this={navbar} />
@@ -114,7 +122,7 @@
 		<div id="smooth-content">
 			{@render children()}
 			{#if !pathsWithoutFooter.includes(page.url.pathname)}
-			    <Footer />
+				<Footer />
 			{/if}
 		</div>
 	</div>
