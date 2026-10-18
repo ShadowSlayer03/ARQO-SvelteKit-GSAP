@@ -10,8 +10,8 @@
 		seo.description ??
 			'ARQO specializes in premium building envelope systems — facades, cladding, glazing, and insulation for modern architecture.'
 	);
-	const ogImage = $derived(seo.ogImage ?? 'https://arqo.vercel.app/og-default.jpg');
-	const canonical = $derived(seo.canonical ?? 'https://arqo.vercel.app');
+	const ogImage = $derived(seo.ogImage ?? 'https://arqo-arj.vercel.app/og-default.jpg');
+	const canonical = $derived(seo.canonical ?? 'https://arqo-arj.vercel.app');
 
 	const structuredData = JSON.stringify({
 		'@context': 'https://schema.org',
@@ -19,7 +19,7 @@
 		name: 'ARQO',
 		description:
 			'Premium building envelope systems — facades, cladding, glazing, and insulation for modern architecture.',
-		url: 'https://arqo.vercel.app',
+		url: 'https://arqo-arj.vercel.app',
 		telephone: '+1-555-ARQO-INC',
 		areaServed: 'Worldwide',
 		sameAs: ['https://linkedin.com/company/arqo']

@@ -6,8 +6,8 @@ export const load: LayoutLoad = () => {
 			title: 'ARQO | Building Enclosure Solutions',
 			description:
 				'ARQO specializes in premium building envelope systems — facades, cladding, glazing, and insulation for modern architecture.',
-			ogImage: 'https://arqo.vercel.app/og-default.jpg',
-			canonical: 'https://arqo.vercel.app'
+			ogImage: 'https://arqo-arj.vercel.app/og-default.jpg',
+			canonical: 'https://arqo-arj.vercel.app'
 		}
 	};
 };
