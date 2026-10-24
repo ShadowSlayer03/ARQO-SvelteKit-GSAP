@@ -129,39 +129,53 @@
 		<div
 			class="hero-title absolute top-[47%] left-1/2 z-[70] flex w-[100%] -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center gap-4 font-antonio text-white max-lg:top-[45%] max-lg:gap-2"
 		>
-			<TextReveal
-				bind:this={engineered}
-				text="Engineered"
-				textClass="text-[23rem] leading-[1.03] max-lg:text-[clamp(3.25rem,17vw,9rem)]"
-				heightClass="h-96 max-lg:h-[clamp(3.5rem,17.5vw,9.5rem)]"
-			/>
-			<div class="flex w-full justify-between max-lg:flex-col max-lg:items-center max-lg:gap-1">
+			<div class="w-full lg:w-[97.5%]">
+				<TextReveal
+					bind:this={engineered}
+					text="Engineered"
+					textClass="text-[clamp(14rem,23vw,46rem)] leading-[1.03] max-lg:text-[clamp(3.25rem,17vw,9rem)]"
+					heightClass="h-[clamp(15rem,24vw,47rem)] w-full justify-center lg:justify-between max-lg:h-[clamp(3.5rem,17.5vw,9.5rem)]"
+				/>
+			</div>
+			<div
+				class="flex w-full justify-between max-lg:flex-col max-lg:items-center max-lg:gap-1 lg:w-[97.5%]"
+			>
 				<TextReveal
 					bind:this={envelope}
 					text="Envelope"
-					textClass="text-[12rem] tracking-normal leading-[1.04] max-lg:text-[clamp(2.25rem,14vw,6.5rem)]"
-					heightClass="h-52 max-lg:h-[clamp(2.7rem,14.8vw,6.75rem)]"
+					textClass="text-[clamp(7.5rem,11.5vw,28rem)] tracking-normal leading-[1.04] max-lg:text-[clamp(2.25rem,14vw,6.5rem)]"
+					heightClass="h-[clamp(8rem,12.2vw,29rem)] max-lg:h-[clamp(2.7rem,14.8vw,6.75rem)]"
 					postReveal="stretch-o"
 				/>
 				<TextReveal
 					bind:this={solutions}
 					text="Solutions"
-					textClass="text-[12.5rem] tracking-normal leading-[1.04] max-lg:text-[clamp(2.25rem,14vw,6.5rem)]"
-					heightClass="h-52 max-lg:h-[clamp(2.7rem,14.8vw,6.75rem)]"
+					textClass="text-[clamp(7.5rem,12vw,29rem)] tracking-normal leading-[1.04] max-lg:text-[clamp(2.25rem,14vw,6.5rem)]"
+					heightClass="h-[clamp(8rem,12.8vw,30rem)] max-lg:h-[clamp(2.7rem,14.8vw,6.75rem)]"
 					postReveal="stretch-o"
 				/>
 			</div>
 		</div>
 
 		<div
-			class="quote text-md absolute bottom-0 left-[10%] w-52 text-right font-sans leading-none text-white max-lg:right-5 max-lg:bottom-24 max-lg:left-5 max-lg:w-auto max-lg:text-center max-lg:text-xs max-lg:leading-tight"
+			class="quote text-md absolute bottom-0
+				left-[10%]
+				w-52 text-right font-sans leading-none text-white
+				max-2xl:left-[5%] max-2xl:w-48
+				max-lg:right-5 max-lg:bottom-24 max-lg:left-5
+				max-lg:w-auto max-lg:text-center max-lg:text-xs max-lg:leading-tight"
 		>
 			“ARQO creates highly efficient, sustainable and refined systems for the architecture of
 			tomorrow.”
 		</div>
 
 		<div
-			class="quote text-md absolute right-[20%] bottom-0 w-52 text-right font-sans leading-none text-white max-lg:right-5 max-lg:bottom-4 max-lg:left-5 max-lg:w-auto max-lg:text-center max-lg:text-xs max-lg:leading-tight"
+			class="quote text-md absolute bottom-0
+				right-[20%]
+				w-52 text-right font-sans leading-none text-white
+				max-2xl:right-[8%] max-2xl:w-48
+				max-lg:right-5 max-lg:bottom-4 max-lg:left-5
+				max-lg:w-auto max-lg:text-center max-lg:text-xs max-lg:leading-tight"
 		>
 			“We believe in high performance, precision, safety and tailor-made systems for every
 			architectural environment.”
