@@ -11,6 +11,8 @@
 @theme {
 	--font-singo-sans: 'SingoSans', sans-serif;
 	--font-antonio: 'Antonio', sans-serif;
+
+	--breakpoint-3xl: 120rem; /* 1920px */
 }
 
 html,
