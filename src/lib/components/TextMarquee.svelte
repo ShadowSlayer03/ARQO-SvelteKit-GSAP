@@ -12,4 +12,7 @@
 	<span>{text}</span>
 	<span>{text}</span>
 	<span>{text}</span>
+	<span>{text}</span>
+	<span>{text}</span>
+	<span>{text}</span>
 </div>
