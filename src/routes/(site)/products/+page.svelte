@@ -5,7 +5,7 @@
 </script>
 
 <svelte:head>
-	<title>Products — ARQO</title>
+	<title>Products | ARQO</title>
 	<meta
 		name="description"
 		content="Explore ARQO's architectural envelope systems, engineered for performance and designed for modern buildings."

@@ -151,7 +151,7 @@
 </script>
 
 <svelte:head>
-	<title>Downloads — ARQO</title>
+	<title>Downloads | ARQO</title>
 </svelte:head>
 
 <svelte:window

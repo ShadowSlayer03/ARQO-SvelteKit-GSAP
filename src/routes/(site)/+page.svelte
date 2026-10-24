@@ -8,7 +8,7 @@
 </script>
 
 <svelte:head>
-	<title>ARQO — Engineered Envelope Solutions </title>
+	<title>ARQO | Building Enclosure Solutions </title>
 </svelte:head>
 
 <Hero />

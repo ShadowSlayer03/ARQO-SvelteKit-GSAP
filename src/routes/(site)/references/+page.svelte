@@ -558,7 +558,7 @@
 </script>
 
 <svelte:head>
-	<title>References — ARQO</title>
+	<title>References | ARQO</title>
 	<meta name="description" content="Explore ARQO reference projects across Europe from 2017 to 2026." />
 </svelte:head>
 
