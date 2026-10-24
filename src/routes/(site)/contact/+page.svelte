@@ -53,7 +53,7 @@
 </script>
 
 <svelte:head>
-	<title>Contact — ARQO</title>
+	<title>Contact | ARQO</title>
 </svelte:head>
 
 <main
@@ -111,7 +111,7 @@
 
 			<!-- svelte-ignore a11y_no_static_element_interactions -->
 			<div
-				class="ct-img h-[20rem] overflow-hidden md:h-[18rem] lg:h-[22rem] rounded-md"
+				class="ct-img h-[18rem] overflow-hidden rounded-md md:aspect-[4/3] md:h-auto md:min-h-[15rem]"
 				onmouseenter={() => hoverImage(true)}
 				onmouseleave={() => hoverImage(false)}
 			>
