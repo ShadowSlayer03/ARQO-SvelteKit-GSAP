@@ -50,7 +50,7 @@
 
 	<div
 		bind:this={cards}
-		class="topic-cards mt-15 flex flex-wrap justify-center gap-12 lg:justify-start"
+		class="topic-cards mt-15 grid grid-cols-[repeat(auto-fit,minmax(min(100%,20rem),1fr))] gap-12"
 	>
 		{#each topicItems as item, id (id)}
 			<div class="topic-item">
