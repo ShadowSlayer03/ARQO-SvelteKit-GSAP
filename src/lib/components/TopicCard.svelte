@@ -51,7 +51,7 @@
 <!-- svelte-ignore a11y_no_static_element_interactions -->
 <div
 	bind:this={root}
-	class="relative h-100 w-[calc(100vw-2.5rem)] max-w-80 shrink-0"
+	class="relative h-100 w-full min-w-0"
 	onmouseenter={onMouseEnter}
 	onmouseleave={onMouseLeave}
 >
