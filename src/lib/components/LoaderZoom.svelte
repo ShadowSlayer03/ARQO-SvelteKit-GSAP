@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import gsap from 'gsap';
+	import { optimizedImage, optimizedSrcset } from '$lib/imageAssets';
 
 	let { animationState = $bindable() } = $props();
 
@@ -325,8 +326,12 @@
 		class="final-dot pointer-events-none absolute top-1/2 left-1/2 z-[60] h-72 w-72 -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-full opacity-0 will-change-transform"
 	>
 		<img
-			src="/modern-glass-building.jpg"
+			src={optimizedImage('/modern-glass-building.jpg')}
+			srcset={optimizedSrcset('/modern-glass-building.jpg')}
+			sizes="(max-width: 1023px) 54vw, 36rem"
 			alt="Hero background"
+			loading="eager"
+			decoding="async"
 			class="hero-image h-full w-full scale-200 object-cover [clip-path:inset(25%_25%_25%_25%)]"
 		/>
 	</div>
