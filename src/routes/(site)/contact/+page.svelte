@@ -2,6 +2,7 @@
 	import { onMount } from 'svelte';
 	import gsap from 'gsap';
 	import TextReveal from '$lib/components/TextReveal.svelte';
+	import { optimizedImage, optimizedSrcset } from '$lib/imageAssets';
 
 	let root: HTMLElement;
 	let heading: ReturnType<typeof TextReveal>;
@@ -117,8 +118,12 @@
 			>
 				<img
 					class="h-full w-full object-cover will-change-transform"
-					src="/arqo-hq.png"
+					src={optimizedImage('/arqo-hq.png')}
+					srcset={optimizedSrcset('/arqo-hq.png')}
+					sizes="(min-width: 768px) 45vw, 100vw"
 					alt="ARQO HQ building"
+					loading="lazy"
+					decoding="async"
 				/>
 			</div>
 		</div>
