@@ -5,6 +5,7 @@
 
 	import productItems from '$lib/constants/productItems';
 	import TextMarquee from '$lib/components/TextMarquee.svelte';
+	import { optimizedImage, optimizedSrcset } from '$lib/imageAssets';
 
 	gsap.registerPlugin(ScrollTrigger);
 
@@ -144,7 +145,15 @@
 				</div>
 
 				<div class={`product${id}-image-container absolute z-50 h-82 w-64 rounded-md bg-red-500 `}>
-					<img class="h-full w-full object-cover" src={product.image} alt={product.alt} />
+					<img
+						class="h-full w-full object-cover"
+						src={optimizedImage(product.image)}
+						srcset={optimizedSrcset(product.image)}
+						sizes="16rem"
+						alt={product.alt}
+						loading="lazy"
+						decoding="async"
+					/>
 				</div>
 			</div>
 		{/each}
