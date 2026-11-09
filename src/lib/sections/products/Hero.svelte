@@ -4,6 +4,7 @@
 	import { ScrollSmoother } from 'gsap/ScrollSmoother';
 
 	import TextReveal from '$lib/components/TextReveal.svelte';
+	import { optimizedImage, optimizedSrcset } from '$lib/imageAssets';
 
 	let root: HTMLElement;
 	let heroImage: HTMLImageElement;
@@ -70,6 +71,16 @@
 	}
 </script>
 
+<svelte:head>
+	<link
+		rel="preload"
+		as="image"
+		href={optimizedImage('/modern-glass-building.jpg')}
+		imagesrcset={optimizedSrcset('/modern-glass-building.jpg')}
+		imagesizes="100vw"
+	/>
+</svelte:head>
+
 <section
 	bind:this={root}
 	class="relative isolate min-h-[100svh] overflow-hidden bg-black"
@@ -78,9 +89,12 @@
 	<div class="absolute inset-x-0 top-0 h-[68svh] max-h-[52rem] min-h-[30rem] overflow-hidden">
 		<img
 			bind:this={heroImage}
-			src="/modern-glass-building.jpg"
+			src={optimizedImage('/modern-glass-building.jpg')}
+			srcset={optimizedSrcset('/modern-glass-building.jpg')}
+			sizes="100vw"
 			alt="Modern glass building facade beneath a clear blue sky"
 			fetchpriority="high"
+			loading="eager"
 			decoding="async"
 			class="h-full w-full object-cover object-center"
 		/>
