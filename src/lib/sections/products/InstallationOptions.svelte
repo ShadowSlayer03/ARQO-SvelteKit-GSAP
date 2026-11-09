@@ -5,6 +5,7 @@
 
 	import WordReveal from '$lib/components/WordReveal.svelte';
 	import { installationOptions } from '$lib/constants/productItems';
+	import { optimizedImage, optimizedSrcset } from '$lib/imageAssets';
 
 	gsap.registerPlugin(ScrollTrigger);
 
@@ -364,7 +365,9 @@
 			<figure bind:this={installationFrame} class="relative aspect-[4/3] overflow-hidden">
 				<img
 					bind:this={installationImageA}
-					src={installationOptions[installationImageIndices[0]].img}
+					src={optimizedImage(installationOptions[installationImageIndices[0]].img)}
+					srcset={optimizedSrcset(installationOptions[installationImageIndices[0]].img)}
+					sizes="(max-width: 767px) 100vw, 50vw"
 					alt={installationOptions[installationImageIndices[0]].alt}
 					aria-hidden={activeImageLayer !== 0}
 					style:z-index={incomingImageLayer === 0 ? 2 : 1}
@@ -374,7 +377,9 @@
 				/>
 				<img
 					bind:this={installationImageB}
-					src={installationOptions[installationImageIndices[1]].img}
+					src={optimizedImage(installationOptions[installationImageIndices[1]].img)}
+					srcset={optimizedSrcset(installationOptions[installationImageIndices[1]].img)}
+					sizes="(max-width: 767px) 100vw, 50vw"
 					alt={installationOptions[installationImageIndices[1]].alt}
 					aria-hidden={activeImageLayer !== 1}
 					style:z-index={incomingImageLayer === 1 ? 2 : 1}
@@ -383,7 +388,13 @@
 					class="absolute inset-0 h-full w-full object-cover"
 				/>
 				<img
-					src={installationOptions[installationImageIndices[staggeredImageLayer]].img}
+					src={optimizedImage(
+						installationOptions[installationImageIndices[staggeredImageLayer]].img
+					)}
+					srcset={optimizedSrcset(
+						installationOptions[installationImageIndices[staggeredImageLayer]].img
+					)}
+					sizes="(max-width: 767px) 100vw, 50vw"
 					alt=""
 					aria-hidden="true"
 					loading="eager"
@@ -393,7 +404,13 @@
 					class="staggered-slice pointer-events-none absolute inset-0 h-full w-full object-cover"
 				/>
 				<img
-					src={installationOptions[installationImageIndices[staggeredImageLayer]].img}
+					src={optimizedImage(
+						installationOptions[installationImageIndices[staggeredImageLayer]].img
+					)}
+					srcset={optimizedSrcset(
+						installationOptions[installationImageIndices[staggeredImageLayer]].img
+					)}
+					sizes="(max-width: 767px) 100vw, 50vw"
 					alt=""
 					aria-hidden="true"
 					loading="eager"
@@ -403,7 +420,13 @@
 					class="staggered-slice pointer-events-none absolute inset-0 h-full w-full object-cover"
 				/>
 				<img
-					src={installationOptions[installationImageIndices[staggeredImageLayer]].img}
+					src={optimizedImage(
+						installationOptions[installationImageIndices[staggeredImageLayer]].img
+					)}
+					srcset={optimizedSrcset(
+						installationOptions[installationImageIndices[staggeredImageLayer]].img
+					)}
+					sizes="(max-width: 767px) 100vw, 50vw"
 					alt=""
 					aria-hidden="true"
 					loading="eager"
@@ -413,7 +436,13 @@
 					class="staggered-slice pointer-events-none absolute inset-0 h-full w-full object-cover"
 				/>
 				<img
-					src={installationOptions[installationImageIndices[staggeredImageLayer]].img}
+					src={optimizedImage(
+						installationOptions[installationImageIndices[staggeredImageLayer]].img
+					)}
+					srcset={optimizedSrcset(
+						installationOptions[installationImageIndices[staggeredImageLayer]].img
+					)}
+					sizes="(max-width: 767px) 100vw, 50vw"
 					alt=""
 					aria-hidden="true"
 					loading="eager"
