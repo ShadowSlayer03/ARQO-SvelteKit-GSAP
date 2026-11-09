@@ -1,5 +1,6 @@
 <script lang="ts">
 	import gsap from 'gsap';
+	import { optimizedImage, optimizedSrcset } from '$lib/imageAssets';
 
 	const { topic } = $props();
 
@@ -56,7 +57,15 @@
 	onmouseleave={onMouseLeave}
 >
 	<div class="img-container absolute inset-0 z-0 overflow-hidden rounded-lg border border-white/30">
-		<img class="h-full w-full object-cover" src={topic.image} alt={topic.alt} />
+		<img
+			class="h-full w-full object-cover"
+			src={optimizedImage(topic.image)}
+			srcset={optimizedSrcset(topic.image)}
+			sizes="(min-width: 1280px) 24vw, (min-width: 768px) 44vw, 100vw"
+			alt={topic.alt}
+			loading="lazy"
+			decoding="async"
+		/>
 	</div>
 
 	<div
