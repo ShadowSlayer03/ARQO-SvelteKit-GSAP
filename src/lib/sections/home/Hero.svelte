@@ -2,6 +2,7 @@
 	import { onMount } from 'svelte';
 	import gsap from 'gsap';
 	import TextReveal from '$lib/components/TextReveal.svelte';
+	import { optimizedImage, optimizedSrcset } from '$lib/imageAssets';
 	import { getSite } from '$lib/siteContext';
 
 	let root: HTMLDivElement;
@@ -91,6 +92,30 @@
 	});
 </script>
 
+<svelte:head>
+	<link
+		rel="preload"
+		as="image"
+		href={optimizedImage('/low-angle-roof.jpg')}
+		imagesrcset={optimizedSrcset('/low-angle-roof.jpg')}
+		imagesizes="(max-width: 1023px) 54vw, 36rem"
+	/>
+	<link
+		rel="preload"
+		as="image"
+		href={optimizedImage('/shading2.jpg')}
+		imagesrcset={optimizedSrcset('/shading2.jpg')}
+		imagesizes="(max-width: 1023px) 54vw, 36rem"
+	/>
+	<link
+		rel="preload"
+		as="image"
+		href={optimizedImage('/modern-glass-building.jpg')}
+		imagesrcset={optimizedSrcset('/modern-glass-building.jpg')}
+		imagesizes="(max-width: 1023px) 54vw, 36rem"
+	/>
+</svelte:head>
+
 <div
 	bind:this={root}
 	class="h-screen w-screen bg-black p-4 font-singo-sans max-lg:h-[100svh] max-lg:overflow-hidden md:p-6"
@@ -100,8 +125,12 @@
 			class="first-circle pointer-events-none absolute -top-40 left-[30%] z-60 h-72 w-72 overflow-hidden rounded-full will-change-transform max-lg:-top-12 max-lg:left-[20%] max-lg:h-[clamp(5rem,27vw,18rem)] max-lg:w-[clamp(5rem,27vw,18rem)]"
 		>
 			<img
-				src="/low-angle-roof.jpg"
+				src={optimizedImage('/low-angle-roof.jpg')}
+				srcset={optimizedSrcset('/low-angle-roof.jpg')}
+				sizes="(max-width: 1023px) 54vw, 36rem"
 				alt="Low angle roof"
+				loading="eager"
+				decoding="async"
 				class="hero-image h-full w-full object-cover"
 			/>
 		</div>
@@ -110,8 +139,12 @@
 			class="second-circle pointer-events-none absolute top-[5%] left-[56%] z-60 h-72 w-72 overflow-hidden rounded-full will-change-transform max-lg:h-[clamp(5rem,27vw,18rem)] max-lg:w-[clamp(5rem,27vw,18rem)]"
 		>
 			<img
-				src="/shading2.jpg"
+				src={optimizedImage('/shading2.jpg')}
+				srcset={optimizedSrcset('/shading2.jpg')}
+				sizes="(max-width: 1023px) 54vw, 36rem"
 				alt="Shading on building exteriors"
+				loading="eager"
+				decoding="async"
 				class="hero-image h-full w-full object-cover"
 			/>
 		</div>
@@ -120,8 +153,12 @@
 			class="third-circle final-dot pointer-events-none absolute top-1/2 left-1/2 z-60 h-72 w-72 -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-full bg-slate-500 will-change-transform max-lg:h-[clamp(5rem,27vw,18rem)] max-lg:w-[clamp(5rem,27vw,18rem)]"
 		>
 			<img
-				src="/modern-glass-building.jpg"
+				src={optimizedImage('/modern-glass-building.jpg')}
+				srcset={optimizedSrcset('/modern-glass-building.jpg')}
+				sizes="(max-width: 1023px) 54vw, 36rem"
 				alt="Modern glass building exterior"
+				loading="eager"
+				decoding="async"
 				class="hero-image h-full w-full object-cover"
 			/>
 		</div>
