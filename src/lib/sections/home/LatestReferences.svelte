@@ -3,6 +3,7 @@
 	import gsap from 'gsap';
 	import { ScrollTrigger } from 'gsap/ScrollTrigger';
 	import referenceItems from '$lib/constants/referenceItems';
+	import { optimizedImage, optimizedSrcset } from '$lib/imageAssets';
 
 	gsap.registerPlugin(ScrollTrigger);
 
@@ -130,8 +131,12 @@
 				onmouseenter={(e) => focusCard(e.currentTarget)}
 			>
 				<img
-					src={reference.image}
+					src={optimizedImage(reference.image)}
+					srcset={optimizedSrcset(reference.image)}
+					sizes="(min-width: 1024px) 25vw, (min-width: 768px) 50vw, 100vw"
 					alt={`${reference.title} — ${reference.type} project by ARQO`}
+					loading="lazy"
+					decoding="async"
 					class="ref-img absolute inset-0 h-full w-full object-cover will-change-transform"
 				/>
 
