@@ -3,6 +3,7 @@
 	import gsap from 'gsap';
 	import { ScrollTrigger } from 'gsap/ScrollTrigger';
 	import { productSlides } from '$lib/constants/productItems';
+	import { optimizedImage, optimizedSrcset } from '$lib/imageAssets';
 
 	gsap.registerPlugin(ScrollTrigger);
 
@@ -219,7 +220,7 @@
 		class="relative mx-auto mt-12 min-h-[calc(50svh+15rem)] max-w-[100rem] md:mt-16 md:min-h-[70svh]"
 	>
 		<div
-			class="pointer-events-none absolute right-[10%] bottom-0 z-0 h-[1em] w-[1.4em] overflow-hidden font-antonio text-[clamp(7rem,20vw,20rem)] leading-none"
+			class="pointer-events-none absolute right-[10%] bottom-10 md:bottom-0 z-0 h-[1em] w-[1.4em] overflow-hidden font-antonio text-[clamp(7rem,20vw,20rem)] leading-none"
 			aria-hidden="true"
 		>
 			<span
@@ -243,7 +244,9 @@
 		>
 			<img
 				bind:this={featureImageA}
-				src={productSlides[layerProductIndices[0]].img}
+				src={optimizedImage(productSlides[layerProductIndices[0]].img)}
+				srcset={optimizedSrcset(productSlides[layerProductIndices[0]].img)}
+				sizes="(max-width: 767px) 90vw, min(46vw, 38rem)"
 				alt={productSlides[layerProductIndices[0]].alt}
 				aria-hidden={activeLayer !== 0}
 				style:z-index={incomingLayer === 0 ? 2 : 1}
@@ -253,7 +256,9 @@
 			/>
 			<img
 				bind:this={featureImageB}
-				src={productSlides[layerProductIndices[1]].img}
+				src={optimizedImage(productSlides[layerProductIndices[1]].img)}
+				srcset={optimizedSrcset(productSlides[layerProductIndices[1]].img)}
+				sizes="(max-width: 767px) 90vw, min(46vw, 38rem)"
 				alt={productSlides[layerProductIndices[1]].alt}
 				aria-hidden={activeLayer !== 1}
 				style:z-index={incomingLayer === 1 ? 2 : 1}
